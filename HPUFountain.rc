@@ -247,7 +247,7 @@ END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 98, 336
 STYLE WS_CHILD
-FONT 10, "System"
+FONT 10, "System", 0, 0, 0x1
 BEGIN
     LTEXT           "ÊýÁ¿",IDC_STATIC,17,6,17,8
     LTEXT           "static",IDC_STATICSHULIANG,57,6,17,8

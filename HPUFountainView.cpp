@@ -102,7 +102,7 @@ BOOL CHPUFountainView::PreCreateWindow(CREATESTRUCT&cs)
 
 void CHPUFountainView::OnDraw(CDC*pDC)
 {
-	CHPUFountainDoc*pDoc=GetDocument();
+	CHPUFountainDoc *pDoc=GetDocument();
 	ASSERT_VALID(pDoc);
 	//TODO:adddrawcodefornativedatahere
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);	
@@ -484,7 +484,7 @@ BOOL CHPUFountainView::RenderScene()
 		DrawTable();//»­Ô²Ì¨
 		glPopMatrix();
 	}
-	if(count!=5)
+	else
 	{
 		glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D,texture[2]);	
@@ -656,7 +656,7 @@ void CHPUFountainView::DrawTable()
 {
 	float f=0.025;
 	glPushMatrix();
-	glRotatef(a,0,-1,0);
+	glRotatef(a,0,-1,0);	 //Ðý×ª,ÈÆyÖá
 	glColor3f(1.0,0.5,1.0);
 	water.SetActive();
 	glBegin(GL_QUADS);
@@ -891,11 +891,11 @@ void CHPUFountainView::DrawFountain()
 		{
 			if(count==0)
 				alpha=(i*360/num+a)*PI/180;
-			else if(count==1)
+			else if(count==1)//»Ø×ª
 			{
 				alpha=(i*360/num+a)*PI/180;
 			}
-			else if(count==2)
+			else if(count==2)//Çò
 			{
 				if(i<5)
 					alpha=(i*360/5+a)*PI/180;
@@ -904,9 +904,9 @@ void CHPUFountainView::DrawFountain()
 				else 
 					alpha=(i*360/40+a)*PI/180;
 			}
-			else if(count==3)
+			else if(count==3)//ÂÝÐý
 				alpha=(i*360/num+a)*PI/180;
-			else if(count==4)
+			else if(count==4)//²èºø
 				alpha=a*PI/180;
 			else if(count==5)
 			{
@@ -1503,6 +1503,7 @@ void CHPUFountainView::AddParticles()
 			fn[i]=tempp;
 			
 			tempp->t=-9.9;
+			//m_xingzhuang=1;
 			if(0==m_xingzhuang)
 			{
 				tempp->v=(float)(rand()%200000)/100000+1;//Á£×ÓËÙ¶È
@@ -1511,11 +1512,11 @@ void CHPUFountainView::AddParticles()
 				tempp->x=weiyi[0];
 				tempp->y=0;//weiyi[1];
 				tempp->z=0;//weiyi[2];
+				//µ¥Ö§ÅçÈªµÄÒ¡°Ú½Ç¶È cos((tempp->d*PI)/180)
 				tempp->xd=(cos((tempp->d*PI)/180)*tempp->v/4)/jiaodu;
 				tempp->zd=(sin((tempp->d*PI)/180)*tempp->v)/jiaodu;
 			}
-			
-			if(1==m_xingzhuang)
+			else if(1==m_xingzhuang)
 			{
 				if((j>=0) && (j<2))
 				{
@@ -1591,7 +1592,7 @@ void CHPUFountainView::DeleteParticles()
 		tempp=fn[i];
 		while(tempp)
 		{
-			if(tempp->type==1 && tempp->a<=0)//Á£×ÓËÀÍö
+			if(tempp->type==1 || tempp->a<=0)//Á£×ÓËÀÍö
 			{
 				//É¾³ýÁ£×Ó
 				temp1=tempp->prev;

@@ -6,20 +6,29 @@
 --------------------Configuration: HPUFountain - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPC386.tmp" with contents
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPEF71.tmp" with contents
 [
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/HPUFountain.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\Users\Administrator\Desktop\喷泉模拟系统2\喷泉模拟系统\喷泉造型模拟系统\HPUFountainView.cpp"
+glu32.lib OPENGL32.LIB glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/HPUFountain.pdb" /debug /machine:I386 /out:"Debug/HPUFountain.exe" /pdbtype:sept 
+".\Debug\controlView.obj"
+".\Debug\HPUFountain.obj"
+".\Debug\HPUFountainDoc.obj"
+".\Debug\HPUFountainView.obj"
+".\Debug\LoadTexture.obj"
+".\Debug\LoginDlg.obj"
+".\Debug\MainFrm.obj"
+".\Debug\MyTexture.obj"
+".\Debug\StdAfx.obj"
+".\Debug\HPUFountain.res"
 ]
-Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPC386.tmp" 
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPEF71.tmp"
 <h3>Output Window</h3>
-Compiling...
-HPUFountainView.cpp
+Linking...
+LINK : warning LNK4076: invalid incremental status file "Debug/HPUFountain.ilk"; linking nonincrementally
 
 
 
 <h3>Results</h3>
-HPUFountainView.obj - 0 error(s), 0 warning(s)
+HPUFountain.exe - 0 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

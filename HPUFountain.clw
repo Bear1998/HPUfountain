@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CHPUFountainView
+LastClass=CcontrolView
 LastTemplate=CFormView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "HPUFountain.h"
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=CMainFrame
+LastObject=IDM_MODEL5
 
 
 

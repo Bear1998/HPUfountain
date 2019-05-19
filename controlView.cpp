@@ -208,6 +208,13 @@ void CcontrolView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	pDoc->m_gaodu=m_slidergaodu.GetPos();
 	pDoc->m_jiaodu=m_sliderjiaodu.GetPos();
 
+	/**
+	 * 查看角度范围-5 ~ 10
+	CString tt("");
+	tt.Format("%d",pDoc->m_jiaodu);
+	MessageBox(tt);
+	*/
+
 	//显示喷泉的数量
 	CString str("");
 	str.Format("%d",m_slidershuliang.GetPos());
