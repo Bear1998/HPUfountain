@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CcontrolView
+LastClass=CMainFrame
 LastTemplate=CFormView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "HPUFountain.h"
@@ -15,11 +15,11 @@ Class3=CHPUFountainView
 Class4=CMainFrame
 
 ResourceCount=4
-Resource1=IDR_MAINFRAME
-Resource2=IDD_Logindlg
+Resource1=IDD_Logindlg
+Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CLoginDlg
-Resource3=IDD_ABOUTBOX
+Resource3=IDR_MAINFRAME
 Class7=CcontrolView
 Resource4=IDD_DIALOG1
 
@@ -44,7 +44,7 @@ ImplementationFile=HPUFountainView.cpp
 Filter=W
 BaseClass=CView
 VirtualFilter=VWC
-LastObject=CHPUFountainView
+LastObject=IDM_MODEL5
 
 
 [CLS:CMainFrame]
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=IDM_MODEL5
+LastObject=IDM_MODEL42
 
 
 
@@ -94,40 +94,19 @@ Command13=ID_EDIT_PASTE
 Command14=ID_VIEW_TOOLBAR
 Command15=ID_VIEW_STATUS_BAR
 Command16=IDM_HUIFU
-Command17=IDM_MODEL9
-Command18=IDM_MODEL4
-Command19=IDM_MODEL1
-Command20=IDM_MODEL5
-Command21=IDM_MODEL10
-Command22=IDM_MODEL11
-Command23=IDM_MODEL12
-Command24=IDM_MODEL31
-Command25=IDM_MODEL32
-Command26=IDM_MODEL33
-Command27=IDM_MODEL34
-Command28=IDM_MODEL40
-Command29=IDM_MODEL41
-Command30=IDM_MODEL42
-Command31=IDM_MODEL35
-Command32=IDM_MODEL36
-Command33=IDM_MODEL37
-Command34=IDM_MODEL20
-Command35=IDM_MODEL21
-Command36=IDM_MODEL22
-Command37=IDM_MODEL45
-Command38=IDM_MODEL17
-Command39=IDM_MODEL46
-Command40=IDM_MODEL48
-Command41=IDM_MODEL47
-Command42=IDM_MODEL13
-Command43=IDM_MODEL15
-Command44=IDM_MODEL16
-Command45=IDM_MODEL2
-Command46=IDM_MODEL3
-Command47=IDM_MODEL6
-Command48=IDM_MODEL7
-Command49=ID_APP_ABOUT
-CommandCount=49
+Command17=IDM_MODEL40
+Command18=IDM_MODEL41
+Command19=IDM_MODEL42
+Command20=IDM_MODEL9
+Command21=IDM_MODEL4
+Command22=IDM_MODEL1
+Command23=IDM_MODEL5
+Command24=IDM_MODEL15
+Command25=IDM_MODEL10
+Command26=IDM_MODEL12
+Command27=IDM_MODEL33
+Command28=ID_APP_ABOUT
+CommandCount=28
 
 [ACL:IDR_MAINFRAME]
 Type=1

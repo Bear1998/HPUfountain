@@ -142,54 +142,25 @@ BEGIN
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
     END
     MENUITEM "恢复",                        IDM_HUIFU
-    POPUP "外流型"
-    BEGIN
-        MENUITEM "HPU造型",                     IDM_MODEL9
-        MENUITEM "茶壶瀑布",                    IDM_MODEL4
-        MENUITEM "回转型",                      IDM_MODEL1
-        MENUITEM "圆台",                        IDM_MODEL5
-        MENUITEM SEPARATOR
-        MENUITEM "花型四",                      IDM_MODEL10
-        MENUITEM "花型六",                      IDM_MODEL11
-        MENUITEM "设计",                        IDM_MODEL12
-    END
     POPUP "图形变换造型"
     BEGIN
-        MENUITEM "排箫造型",                    IDM_MODEL31
-        MENUITEM "拱桥造型",                    IDM_MODEL32
-        MENUITEM "塔造型",                      IDM_MODEL33
-        MENUITEM "君子兰造型",                  IDM_MODEL34
         MENUITEM SEPARATOR
         MENUITEM "旋转变换",                    IDM_MODEL40
         MENUITEM "平移变换",                    IDM_MODEL41
         MENUITEM "对称变换",                    IDM_MODEL42
         MENUITEM SEPARATOR
-        MENUITEM "复杂造型一",                  IDM_MODEL35
-        MENUITEM "复杂造型二",                  IDM_MODEL36
-        MENUITEM "复杂造型三",                  IDM_MODEL37
-        MENUITEM "复杂造型四",                  IDM_MODEL20
-        MENUITEM "复杂造型五",                  IDM_MODEL21
-        MENUITEM "复杂造型六",                  IDM_MODEL22
-    END
-    POPUP "分形造型"
-    BEGIN
-        MENUITEM "Koch曲线一",                  IDM_MODEL45
-        MENUITEM "Koch曲线二",                  IDM_MODEL17
-        MENUITEM "Koch曲线三",                  IDM_MODEL46
-        MENUITEM SEPARATOR
-        MENUITEM "环形分形",                    IDM_MODEL48
-        MENUITEM "螺旋风车",                    IDM_MODEL47
     END
     POPUP "特殊造型"
     BEGIN
-        MENUITEM "五角星一",                    IDM_MODEL13
-        MENUITEM "五角星二",                    IDM_MODEL15
-        MENUITEM "五角星三",                    IDM_MODEL16
+        MENUITEM "HPU造型",                     IDM_MODEL9
+        MENUITEM "茶壶瀑布",                    IDM_MODEL4
+        MENUITEM "回转型",                      IDM_MODEL1
+        MENUITEM "圆台",                        IDM_MODEL5
+        MENUITEM "五角星",                      IDM_MODEL15
         MENUITEM SEPARATOR
-        MENUITEM "球型",                        IDM_MODEL2
-        MENUITEM "螺旋型",                      IDM_MODEL3
-        MENUITEM "心型",                        IDM_MODEL6
-        MENUITEM "中国结",                      IDM_MODEL7
+        MENUITEM "四叶花",                      IDM_MODEL10
+        MENUITEM "牵牛花",                      IDM_MODEL12
+        MENUITEM "塔造型",                      IDM_MODEL33
     END
     POPUP "帮助(&H)"
     BEGIN
@@ -509,7 +480,6 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDM_CIRCLE              "喷泉造型为回转型"
     IDM_MODEL11             "喷泉造型为包围型"
-    IDM_MODEL12             "喷泉造型为心型"
     IDM_MODEL13             "喷泉造型为五角星造型"
 END
 

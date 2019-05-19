@@ -6,7 +6,8 @@
 --------------------Configuration: HPUFountain - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPEF71.tmp" with contents
+Creating command line "rc.exe /l 0x804 /fo"Debug/HPUFountain.res" /d "_DEBUG" /d "_AFXDLL" "C:\Users\Administrator\Desktop\喷泉模拟系统2\喷泉模拟系统\喷泉造型模拟系统\HPUFountain.rc"" 
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP8529.tmp" with contents
 [
 glu32.lib OPENGL32.LIB glaux.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/HPUFountain.pdb" /debug /machine:I386 /out:"Debug/HPUFountain.exe" /pdbtype:sept 
 ".\Debug\controlView.obj"
@@ -20,8 +21,9 @@ glu32.lib OPENGL32.LIB glaux.lib /nologo /subsystem:windows /incremental:yes /pd
 ".\Debug\StdAfx.obj"
 ".\Debug\HPUFountain.res"
 ]
-Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPEF71.tmp"
+Creating command line "link.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP8529.tmp"
 <h3>Output Window</h3>
+Compiling resources...
 Linking...
 LINK : warning LNK4076: invalid incremental status file "Debug/HPUFountain.ilk"; linking nonincrementally
 
