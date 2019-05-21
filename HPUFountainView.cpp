@@ -48,6 +48,7 @@ BEGIN_MESSAGE_MAP(CHPUFountainView,CView)
 	ON_COMMAND(IDM_MODEL40, OnModel40)
 	ON_COMMAND(IDM_MODEL41, OnModel41)
 	ON_COMMAND(IDM_MODEL42, OnModel42)
+	ON_COMMAND(IDM_MODEL2, OnModel2)
 	//}}AFX_MSG_MAP
 	//Standardprintingcommands
 	ON_COMMAND(ID_FILE_PRINT,CView::OnFilePrint)
@@ -414,7 +415,7 @@ void CHPUFountainView::HuiFu()
 {
 	CHPUFountainDoc *pDoc=(CHPUFountainDoc*)CView::GetDocument();
 	UpdateData();
-	pDoc->m_shuliang=150;			//初始化数量
+	pDoc->m_shuliang=8;			//初始化数量
 	pDoc->m_light=0;
 	pDoc->m_weizhi=0;
 	pDoc->m_cuxi=1;
@@ -642,12 +643,6 @@ void CHPUFountainView::DrawTable()
 	glNormal3f(1,1,0);
 	for(i=0;i<41-1;i++)
 	{
-		/*
-		glTexCoord2f(0,0);glVertex3f(table[i].x,table[i].y,table[i].z);
-		glTexCoord2f(1,0);glVertex3f(table[i+1].x,table[i+1].y,table[i+1].z);
-		glTexCoord2f(1,1);glVertex3f(table[i+1].x,table[i+1].y+43,table[i+1].z);
-		glTexCoord2f(0,1);glVertex3f(table[i].x,table[i].y+43,table[i].z);
-		*/
 		//底层圆柱，由一个个长方形面片组成
 		glVertex3f(table[i].x,table[i].y,table[i].z);
 		glVertex3f(table[i+1].x,table[i+1].y,table[i+1].z);
@@ -697,6 +692,11 @@ void CHPUFountainView::DrawFountain()
 	{
 		AddParticles1();
 		MoveParticles1();	
+	}
+	else if(count==2)//皇冠
+	{
+		AddParticles1();
+		MoveParticles();	
 	}
 	else if(count==4)//茶壶瀑布
 	{
@@ -763,6 +763,10 @@ void CHPUFountainView::DrawFountain()
 			if(count==0)
 				alpha=(i*360/num+a)*PI/180;
 			else if(count==1)//回转
+			{
+				alpha=(i*360/num+a)*PI/180;
+			}
+			else if(count==2)//皇冠
 			{
 				alpha=(i*360/num+a)*PI/180;
 			}
@@ -987,54 +991,18 @@ void CHPUFountainView::AddParticles()
 				fn[i]->prev=tempp;
 			tempp->next=fn[i];
 			fn[i]=tempp;
-			
 			tempp->t=-9.9;
-			//m_xingzhuang=1;
-			if(0==m_xingzhuang)
-			{
-				tempp->v=(float)(rand()%200000)/100000+1;//粒子速度
-				tempp->d=(float)(rand()%400)/100-2;//粒子方向rand()%400产生一个[0,400)内的数值[-2,2)
-				//开始位置的坐标
-				tempp->x=weiyi[0];
-				tempp->y=0;//weiyi[1];
-				tempp->z=0;//weiyi[2];
-				//单支喷泉的摇摆角度 cos((tempp->d*PI)/180)
-				tempp->xd=(cos((tempp->d*PI)/180)*tempp->v/4)/jiaodu;
-				tempp->zd=(sin((tempp->d*PI)/180)*tempp->v)/jiaodu;
-			}
-			else if(1==m_xingzhuang)
-			{
-				if((j>=0) && (j<2))
-				{
-					tempp->v=(float)(rand()%200000)/100000+1+jiaodu;//粒子速度
-					tempp->d=(float)(rand()%500)/100;//粒子方向
-					tempp->x=weiyi[0];
-					tempp->y=weiyi[1];
-					tempp->z=weiyi[2];
-					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/jiaodu;
-					tempp->zd=sin((tempp->d*3.14159)/180)*tempp->v;
-				}
-				if((j>=2) && (j<4))
-				{
-					tempp->v=(float)(rand()%200000)/100000+1+4;//粒子速度
-					tempp->d=(float)(rand()%500)/100;//粒子方向
-					tempp->x=50;
-					tempp->y=17;
-					tempp->z=50;
-					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/(jiaodu+4);
-					tempp->zd=(sin((tempp->d*3.14159)/180)*tempp->v-1)/(jiaodu+4);
-				}
-				if((j>=4) && (j<6))
-				{
-					tempp->v=(float)(rand()%200000)/100000+1+4;//粒子速度
-					tempp->d=(float)(rand()%500)/100;//粒子方向
-					tempp->x=70;
-					tempp->y=17;
-					tempp->z=70;
-					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/(jiaodu+4);
-					tempp->zd=(sin((tempp->d*3.14159)/180)*tempp->v-1)/(jiaodu+4);
-				}
-			}
+
+			tempp->v=(float)(rand()%200000)/100000+1;//粒子速度
+			tempp->d=(float)(rand()%400)/100-2;//粒子方向rand()%400产生一个[0,400)内的数值[-2,2)
+			//开始位置的坐标
+			tempp->x=weiyi[0];
+			tempp->y=0;//weiyi[1];
+			tempp->z=0;//weiyi[2];
+			//单支喷泉的摇摆角度 cos((tempp->d*PI)/180)
+			tempp->xd=(cos((tempp->d*PI)/180)*tempp->v/4)/jiaodu;
+			tempp->zd=(sin((tempp->d*PI)/180)*tempp->v)/jiaodu;
+
 			tempp->type=0;//粒子的状态为运动
 			tempp->a=1;//粒子淡化
 		}
@@ -1052,9 +1020,9 @@ void CHPUFountainView::MoveParticles()
 			{
 				tempp->x+=tempp->xd;
 				tempp->z+=tempp->zd;
-				//tempp->z=20*tempp->t-5.8*tempp->t*tempp->t/2;
+				// tempp->z=20*tempp->t-5.8*tempp->t*tempp->t/2;
 				tempp->y=(-(9.8*(tempp->t*tempp->t/4))/2+122.5)/gaodu;
-				//tempp->y=50*tempp->t-9.8*tempp->t*tempp->t/2;
+				// tempp->y=50*tempp->t-9.8*tempp->t*tempp->t/2;
 				tempp->t+=0.1;
 				if(tempp->y<0)//如果粒子位于地面下则改变粒子的状态
 					tempp->type=1;
@@ -1078,7 +1046,7 @@ void CHPUFountainView::DeleteParticles()
 		tempp=fn[i];
 		while(tempp)
 		{
-			if(tempp->type==1 || tempp->a<=0)//粒子死亡
+			if(tempp->type==1 && tempp->a<=0)//粒子死亡
 			{
 				//删除粒子
 				temp1=tempp->prev;
@@ -1126,7 +1094,9 @@ void CHPUFountainView::AddParticles1()
 	int number;
 	struct particle *tempp;
 	if(count==3)
-		number=5;
+		number=2;
+	else if(count==2)
+		number=2;
 	else
 		number=1;
 	for(i=0;i<num;i++)
@@ -1148,7 +1118,43 @@ void CHPUFountainView::AddParticles1()
 
 			if(count==1)//模型一
 			{	
-				tempp->x=weiyi[0]+40;
+				tempp->x=weiyi[0]+40; //向外扩40
+			}
+			else if(count==2)
+			{
+				tempp->t = -9.9;
+				
+				if((j>=0) && (j<2))
+				{
+					tempp->v=(float)(rand()%200000)/100000+1+4;//粒子速度
+					tempp->d=(float)(rand()%500)/100;//粒子方向
+					tempp->x=50;
+					tempp->z=50;
+					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/(jiaodu+4);
+					tempp->zd=(sin((tempp->d*3.14159)/180)*tempp->v-1)/(jiaodu+4);
+				}
+				/*	多余
+				if((j>=2) && (j<4))
+				{
+					tempp->v=(float)(rand()%200000)/100000+1+jiaodu;//粒子速度
+					tempp->d=(float)(rand()%400)/100.0-2;//粒子方向
+					tempp->x=weiyi[0];
+					tempp->y=0;
+					tempp->z=0;
+					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/jiaodu;
+					tempp->zd=sin((tempp->d*3.14159)/180)*tempp->v;
+				}
+				if((j>=4) && (j<6))
+				{
+					tempp->v=(float)(rand()%200000)/100000+1+4;//粒子速度
+					tempp->d=(float)(rand()%500)/100;//粒子方向
+					tempp->x=70;
+					tempp->y=17;
+					tempp->z=70;
+					tempp->xd=(cos((tempp->d*3.14159)/180)*tempp->v/8)/(jiaodu+4);
+					tempp->zd=(sin((tempp->d*3.14159)/180)*tempp->v-1)/(jiaodu+4);
+				}
+				*/
 			}
 			else if(count==4)//模型四茶壶
 			{
@@ -1483,9 +1489,9 @@ void CHPUFountainView::AddParticles1()
 				else
 					tempp->x=weiyi[0]+40;
 			}
-		tempp->type=0;//粒子的状态为运动
-		tempp->a=1;
-	}
+			tempp->type=0;//粒子的状态为运动
+			tempp->a=1;
+		}
 }
 //粒子运动函数
 void CHPUFountainView::MoveParticles1()
@@ -1508,7 +1514,14 @@ void CHPUFountainView::MoveParticles1()
 						if(tempp->y<0)
 							tempp->type=1;
 					}
-					
+				}
+				else if(count==2)//模型皇冠
+				{
+					tempp->x+=tempp->xd;
+					tempp->z+=tempp->zd;
+					tempp->y=(-(9.8*(tempp->t*tempp->t/4))/2+122.5)/gaodu;
+					if(tempp->y < 0)
+						tempp->type=1;
 				}
 				else if(count==4)//模型四茶壶
 				{
@@ -2005,10 +2018,7 @@ void CHPUFountainView::MoveParticles1()
 							tempp->type=1;
 					}
 				}
-				if(count!=7)
-					tempp->t+=0.5;
-				else
-					tempp->t+=5;
+				tempp->t += 0.5;
 			}
 			else
 			{
@@ -2016,7 +2026,6 @@ void CHPUFountainView::MoveParticles1()
 				{
 					tempp->y=(5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
 				}
-				
 				else if(count==4)//模型四茶壶
 				{
 					tempp->y=(110+0.5*tempp->t-0.1*tempp->t*tempp->t/2)/gaodu;
@@ -2090,7 +2099,14 @@ void CHPUFountainView::OnModel1()
 	//num=61;
 	Invalidate(FALSE);
 }
-
+void CHPUFountainView::OnModel2() //皇冠
+{
+	// TODO: Add your command handler code here
+	HuiFu();
+	count=2;
+	num=1;
+	Invalidate(FALSE);
+}
 
 void CHPUFountainView::OnModel4() //茶壶瀑布
 {
@@ -2108,11 +2124,6 @@ void CHPUFountainView::OnModel5() //圆台
 	Invalidate(FALSE);
 }
 
-
-
-
-
-//心型
 void CHPUFountainView::OnModel8()
 {
 	//TODO:Addyourcommandhandlercodehere
@@ -2169,10 +2180,6 @@ void CHPUFountainView::OnActivate(UINT nState,CWnd* pWndOther,BOOL bMinimized)
 	
 }
 
-
-
-
-
 void CHPUFountainView::OnModel33() 
 {
 	// TODO: Add your command handler code here
@@ -2180,9 +2187,6 @@ void CHPUFountainView::OnModel33()
 	count=33;
 	Invalidate(FALSE);
 }
-
-
-
 
 void CHPUFountainView::OnModel40() 
 {

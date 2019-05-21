@@ -152,15 +152,16 @@ BEGIN
     END
     POPUP "特殊造型"
     BEGIN
+        MENUITEM "回转型",                      IDM_MODEL1
         MENUITEM "HPU造型",                     IDM_MODEL9
         MENUITEM "茶壶瀑布",                    IDM_MODEL4
-        MENUITEM "回转型",                      IDM_MODEL1
         MENUITEM "圆台",                        IDM_MODEL5
         MENUITEM "五角星",                      IDM_MODEL15
         MENUITEM SEPARATOR
         MENUITEM "四叶花",                      IDM_MODEL10
         MENUITEM "牵牛花",                      IDM_MODEL12
         MENUITEM "塔造型",                      IDM_MODEL33
+        MENUITEM "皇冠",                        IDM_MODEL2
     END
     POPUP "帮助(&H)"
     BEGIN

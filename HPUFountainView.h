@@ -151,6 +151,7 @@ protected:
 	afx_msg void OnModel41();
 	afx_msg void OnModel42();
 	afx_msg void OnModel43();
+	afx_msg void OnModel2();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
