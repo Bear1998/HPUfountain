@@ -157,9 +157,9 @@ void CcontrolView::OnInitialUpdate()
 	m_sliderB.SetPos(100);
 
 	m_slidergaodu.SetRange(1,5);//高度变化
-	m_slidergaodu.SetPos(1);
+	m_slidergaodu.SetPos(3);
 
-	m_sliderjiaodu.SetRange(1,10);//角度变化
+	m_sliderjiaodu.SetRange(1,5);//角度变化
 	m_sliderjiaodu.SetPos(1);
 
 	m_nLighting=0; //光照

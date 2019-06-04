@@ -162,6 +162,8 @@ BEGIN
         MENUITEM "牵牛花",                      IDM_MODEL12
         MENUITEM "塔造型",                      IDM_MODEL33
         MENUITEM "皇冠",                        IDM_MODEL2
+        MENUITEM "综合喷泉1",                   IDM_MODEL3
+        MENUITEM "综合喷泉2",                   IDM_MODEL6
     END
     POPUP "帮助(&H)"
     BEGIN

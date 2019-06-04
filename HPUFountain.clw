@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CcontrolView
+LastClass=CMainFrame
 LastTemplate=CFormView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "HPUFountain.h"
@@ -15,11 +15,11 @@ Class3=CHPUFountainView
 Class4=CMainFrame
 
 ResourceCount=4
-Resource1=IDR_MAINFRAME
-Resource2=IDD_Logindlg
+Resource1=IDD_Logindlg
+Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CLoginDlg
-Resource3=IDD_ABOUTBOX
+Resource3=IDR_MAINFRAME
 Class7=CcontrolView
 Resource4=IDD_DIALOG1
 
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=IDC_SLIDERGAODU
+LastObject=IDM_MODEL3
 
 
 
@@ -106,8 +106,10 @@ Command25=IDM_MODEL10
 Command26=IDM_MODEL12
 Command27=IDM_MODEL33
 Command28=IDM_MODEL2
-Command29=ID_APP_ABOUT
-CommandCount=29
+Command29=IDM_MODEL3
+Command30=IDM_MODEL6
+Command31=ID_APP_ABOUT
+CommandCount=31
 
 [ACL:IDR_MAINFRAME]
 Type=1

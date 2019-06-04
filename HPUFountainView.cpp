@@ -49,6 +49,8 @@ BEGIN_MESSAGE_MAP(CHPUFountainView,CView)
 	ON_COMMAND(IDM_MODEL41, OnModel41)
 	ON_COMMAND(IDM_MODEL42, OnModel42)
 	ON_COMMAND(IDM_MODEL2, OnModel2)
+	ON_COMMAND(IDM_MODEL3, OnModel3)
+	ON_COMMAND(IDM_MODEL6, OnModel6)
 	//}}AFX_MSG_MAP
 	//Standardprintingcommands
 	ON_COMMAND(ID_FILE_PRINT,CView::OnFilePrint)
@@ -133,7 +135,7 @@ CHPUFountainDoc*CHPUFountainView::GetDocument()//non-debugversionisinline
 //CHPUFountainViewmessagehandlers
 
 int CHPUFountainView::OnCreate(LPCREATESTRUCT lpCreateStruct)
-{
+{	
 	if(CView::OnCreate(lpCreateStruct)==-1)
 		return-1;
 	
@@ -146,12 +148,12 @@ int CHPUFountainView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 //初始化OpenGL场景
 BOOL CHPUFountainView::InitializeOpenGL(CDC*pDC)
-{
+{	
 	m_pDC=pDC;
 	SetupPixelFormat();
 	m_hRC=::wglCreateContext(m_pDC->GetSafeHdc());
 	::wglMakeCurrent(m_pDC->GetSafeHdc(),m_hRC);
-	
+	HuiFu();
 	return TRUE;
 }
 //设置像素格式
@@ -404,7 +406,7 @@ void CHPUFountainView::OnTimer(UINT nIDEvent)
 	m_sliderG=pDoc->m_sliderG;
 	m_sliderB=pDoc->m_sliderB;
 
-	gaodu=pDoc->m_gaodu;
+	gaodu=2.8/pDoc->m_gaodu;
 	jiaodu=pDoc->m_jiaodu;
 
 	InvalidateRect(NULL,FALSE);	
@@ -425,7 +427,7 @@ void CHPUFountainView::HuiFu()
 	pDoc->m_sliderR=50;
 	pDoc->m_sliderG=100;
 	pDoc->m_sliderB=0;
-	pDoc->m_gaodu=1;
+	pDoc->m_gaodu=3;
 	pDoc->m_jiaodu=1;
 }
 
@@ -698,6 +700,12 @@ void CHPUFountainView::DrawFountain()
 		AddParticles1();
 		MoveParticles();	
 	}
+	else if(count==3)
+	{
+		num=245;
+		AddParticles1();
+		MoveParticles1();
+	}
 	else if(count==4)//茶壶瀑布
 	{
 		num=1;
@@ -706,6 +714,12 @@ void CHPUFountainView::DrawFountain()
 	}
 	else if(count==5)//圆台
 	{
+		AddParticles1();
+		MoveParticles1();
+	}
+	else if(count==6)//复杂2
+	{
+		num=327;
 		AddParticles1();
 		MoveParticles1();
 	}
@@ -747,6 +761,7 @@ void CHPUFountainView::DrawFountain()
 	}
 	else if(count==15)//五角星二
 	{
+		num=160;
 		AddParticles1();
 		MoveParticles1();
 	}
@@ -769,6 +784,18 @@ void CHPUFountainView::DrawFountain()
 			else if(count==2)//皇冠
 			{
 				alpha=(i*360/num+a)*PI/180;
+				
+			}
+			else if(count==3)//复杂
+			{
+				if(i<30)
+					alpha=(i*360/30+a)*PI/180;
+				else if(i<50)
+					alpha=((i-30)*360/20+a)*PI/180;
+				else if(i<170)
+					alpha=((i-50)*360/1+a)*PI/180;
+				else if(i>=170 && i<242)
+					alpha=((i-50)*360/1+a)*PI/180;
 			}
 			else if(count==4)//茶壶
 				alpha=a*PI/180;
@@ -781,8 +808,24 @@ void CHPUFountainView::DrawFountain()
 				else if(i>=30)
 					alpha=(i*360/(num-30)+a)*PI/180;
 			}
-			else if(count==6 || count==7)
-				alpha=(i*360/1+a)*PI/180;
+			else if(count==6)
+			{
+				if(i<104)
+					alpha=(i*360/1+a)*PI/180;
+				//else if(i>=104 && i<168)
+				//	alpha=(i*360/1+a)*PI/180;
+				else if(i>=168 && i<232)
+					alpha=(i*360/1+a)*PI/180;
+				else if(i>=232 && i<290)
+					alpha=(i*360/58+a)*PI/180;
+				else if(i>=290 && i<310)
+					alpha=(i*360/20+a)*PI/180;
+				else if(i>=310 && i<330)
+					alpha=(i*360/20+a)*PI/180;
+				else
+					alpha=(i*360/(num-330))*PI/180;
+			}
+			
 			else if(count==8)//方形
 			{
 				if(i<32)
@@ -1156,6 +1199,94 @@ void CHPUFountainView::AddParticles1()
 				}
 				*/
 			}
+			else if(count==3)
+			{
+				if(i<30)
+				{
+					tempp->x=weiyi[0]+15;
+				}
+				else if(i<50)
+				{
+					tempp->x=weiyi[0]+30;
+				}
+				else if(i<170)
+				{
+					float a,b,c;
+					a=80;//外层环形阵列半径
+					b=a*(cos(30*PI/180)+sin(30*PI/180));
+					c=a*(cos(30*PI/180)-sin(30*PI/180));
+						
+				if(i<60) //外层小喷泉环形阵列
+					{
+						tempp->x=weiyi[0]+a;
+						tempp->z=weiyi[0]+a;
+					}
+					else if(i>=60 && i<70)
+					{
+						tempp->x=weiyi[0]+c;
+						tempp->z=weiyi[0]+b;
+					}
+					else if(i>=70 && i<80)
+					{
+						tempp->x=weiyi[0]-c;
+						tempp->z=weiyi[0]+b;
+					}
+					else if(i>=80 && i<90)
+					{
+						tempp->x=weiyi[0]-a;
+						tempp->z=weiyi[0]+a;
+					}
+					else if(i>=90 && i<100)
+					{
+						tempp->x=weiyi[0]-b;
+						tempp->z=weiyi[0]+c;
+					}
+					else if(i>=100 && i<110)
+					{
+						tempp->x=weiyi[0]-b;
+						tempp->z=weiyi[0]-c;
+					}
+					else if(i>=110 && i<120)
+					{
+						tempp->x=weiyi[0]-a;
+						tempp->z=weiyi[0]-a;
+					}
+					else if(i>=120 && i<130)
+					{
+						tempp->x=weiyi[0]-c;
+						tempp->z=weiyi[0]-b;
+					}
+					else if(i>=130 && i<140)
+					{
+						tempp->x=weiyi[0]+c;
+						tempp->z=weiyi[0]-b;
+					}
+					else if(i>=140 && i<150)
+					{
+						tempp->x=weiyi[0]+a;
+						tempp->z=weiyi[0]-a;
+					}
+					else if(i>=150 && i<160)
+					{
+						tempp->x=weiyi[0]+b;
+						tempp->z=weiyi[0]-c;
+					}
+					else
+					{
+						tempp->x=weiyi[0]+b;
+						tempp->z=weiyi[0]+c;
+					}
+				}
+				else if(i<245)
+				{
+					float a,b,c;
+					a=140;//外层环形阵列半径
+					b=i%6;
+					c=i/6;
+					tempp->x=weiyi[0]+a*cos((b*4+20+c*30)*PI/180);
+					tempp->z=weiyi[0]+a*sin((b*4+20+c*30)*PI/180);
+				}
+			}
 			else if(count==4)//模型四茶壶
 			{
 				tempp->x=-15;
@@ -1179,6 +1310,63 @@ void CHPUFountainView::AddParticles1()
 				{
 					tempp->x=table1[0].x;
 					tempp->y=table1[0].y;
+				}
+			}
+			else if(count==6)
+			{
+				int c=140;
+				if(i<104)
+				{
+					int a,b;
+					a=i/13;
+					b=i%13;
+					tempp->x = (weiyi[0]+b*3-18)*cos(a*45*PI/180)-(weiyi[0]+c)*sin(a*45*PI/180);
+					tempp->z = (weiyi[0]+b*3-18)*sin(a*45*PI/180)+(weiyi[0]+c)*cos(a*45*PI/180);
+				}
+				/*else if(i>=104 && i<120)
+				{
+					tempp->x=weiyi[0]+c;
+					tempp->z=weiyi[0]+c;
+				}
+				else if(i>=120 && i<136)
+				{
+					tempp->x=weiyi[0]-c;
+					tempp->z=weiyi[0]-c;
+				}
+				else if(i>=136 && i<152)
+				{
+					tempp->x=weiyi[0]+c;
+					tempp->z=weiyi[0]-c;
+				}
+				else if(i>=152 && i<168)
+				{
+					tempp->x=weiyi[0]-c;
+					tempp->z=weiyi[0]+c;
+				}*/
+				else if(i>=168 && i<232)
+				{
+					float a,b,c;
+					a=100;//外层环形阵列半径
+					b=i%8;
+					c=i/8;
+					tempp->x=weiyi[0]+a*cos((b*1.5+20+c*45)*PI/180);
+					tempp->z=weiyi[0]+a*sin((b*1.5+20+c*45)*PI/180);
+				}
+				else if(i>=232 && i<290)
+				{
+					tempp->x=weiyi[0]+90;
+				}
+				else if(i>=290 && i<310)
+				{
+					tempp->x=weiyi[0]+40;
+				}
+				else if(i>=310 && i<330)
+				{
+					tempp->x=weiyi[0]+15;
+				}
+				else
+				{
+					tempp->x=weiyi[0];
 				}
 			}
 			else if(count==9)//复杂造型HPU
@@ -1515,12 +1703,46 @@ void CHPUFountainView::MoveParticles1()
 							tempp->type=1;
 					}
 				}
+				
 				else if(count==2)//模型皇冠
 				{
 					tempp->x+=tempp->xd;
 					tempp->z+=tempp->zd;
 					tempp->y=(-(9.8*(tempp->t*tempp->t/4))/2+122.5)/gaodu;
 					if(tempp->y < 0)
+						tempp->type=1;
+				}
+				else if(count==3)//复杂综合
+				{
+					if(i<30)
+					{
+						tempp->x+=tempp->xd/6;
+						tempp->y=(12*tempp->t-0.24*tempp->t*tempp->t)/gaodu;
+					}
+					else if(i<50)
+					{
+						tempp->x+=tempp->xd;
+						tempp->z+=tempp->zd;
+						tempp->y=(5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+					}
+					else if(i<170)
+					{
+						int k=(i-50)%20;
+						tempp->x += (tempp->xd/2*cos((36*k+60)*PI/180));
+						tempp->z += (tempp->xd/2*sin((36*k+60)*PI/180));
+						tempp->y = (3*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu;
+					}
+					else if(i<245)
+					{
+						float a,b,c;
+						a=140;//外层环形阵列半径
+						b=(i-50)%6;
+						c=(i-50)/6;
+						tempp->x -= (tempp->xd*1.5*cos((b*4+20+c*30)*PI/180));
+						tempp->z -= (tempp->xd*1.5*sin((b*4+20+c*30)*PI/180));
+						tempp->y = (4*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu;
+					}
+					if(tempp->y<0)
 						tempp->type=1;
 				}
 				else if(count==4)//模型四茶壶
@@ -1559,6 +1781,89 @@ void CHPUFountainView::MoveParticles1()
 						}
 					}
 					
+				}
+				else if(count==6)
+				{
+					if(i<104)
+					{//环状君子兰
+						if(i%13<6)
+						{
+							int a=i/13;
+							tempp->x -= tempp->xd/2*(6-i%13)*0.3*cos(a*45*PI/180)-tempp->zd*sin(a*45*PI/180);
+							tempp->z -= tempp->xd/2*(6-i%13)*0.3*sin(a*45*PI/180)-tempp->zd*cos(a*45*PI/180);
+							tempp->y = (4*tempp->t - 0.2*tempp->t*tempp->t/2)/2/gaodu*(i%13*0.5+0.3);//((i%10)+1)/6
+							if(tempp->y<0)
+								tempp->type=1;
+						}
+						else if(i%13==6)
+						{
+							tempp->y = (4*tempp->t - 0.2*tempp->t*tempp->t/2)/2/gaodu*(i%13*0.5+0.3);//((i%10)+1)/6
+							if(tempp->y<0)
+								tempp->type=1;
+						}
+						else if(i%13>6)
+						{
+							int a=i/13;
+							tempp->x += tempp->xd/2*(i%13-6)*0.3*cos(a*45*PI/180)-tempp->zd*sin(a*45*PI/180);
+							tempp->z += tempp->xd/2*(i%13-6)*0.3*sin(a*45*PI/180)-tempp->zd*cos(a*45*PI/180);
+							tempp->y = (4*tempp->t - 0.2*tempp->t*tempp->t/2)/2/gaodu*((12-i%13)*0.5+0.3);//((i%10)+1)/6
+							if(tempp->y<0)
+								tempp->type=1;
+						}
+					}
+					/*else if(i>=104 && i<168)
+					{//四个角灯泡
+						tempp->x += (tempp->xd*sin((22.5*i)*PI/180));
+						tempp->z += (tempp->xd*cos((22.5*i)*PI/180));
+						tempp->y=(4*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}*/
+					else if(i>=168 && i<232)
+					{//拱桥
+						float a,b,c;
+						if(i>=168 && i<232)
+						{
+							a=100;//外层环形阵列半径
+							b=i%8;
+							c=i/8;
+							tempp->x += tempp->xd*2.5*cos((b*1.5+20+c*45)*PI/180);
+							tempp->z += tempp->xd*2.5*sin((b*1.5+20+c*45)*PI/180);
+							tempp->y=(4*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+							if(tempp->y<0)
+								tempp->type=1;
+						}
+					}
+					else if(i>=232 && i<290)
+					{
+						tempp->x -= tempp->xd*2;
+						tempp->z -= tempp->zd*2;
+						tempp->y=(6*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else if(i>=290 && i<310)
+					{
+						tempp->x -= tempp->xd;
+						tempp->z -= tempp->zd;
+						tempp->y=(8*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else if(i>=310 && i<330)
+					{
+						tempp->x -= tempp->xd/3;
+						tempp->z -= tempp->zd/3;
+						tempp->y=(9.5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else
+					{
+						tempp->y=(10.5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
 				}
 				else if(count==9)//复杂造型HPU型
 				{
@@ -2096,7 +2401,6 @@ void CHPUFountainView::OnModel1()
 	//TODO:Addyourcommandhandlercodehere
 	HuiFu();
 	count=1;
-	//num=61;
 	Invalidate(FALSE);
 }
 void CHPUFountainView::OnModel2() //皇冠
@@ -2104,7 +2408,13 @@ void CHPUFountainView::OnModel2() //皇冠
 	// TODO: Add your command handler code here
 	HuiFu();
 	count=2;
-	num=1;
+	Invalidate(FALSE);
+}
+void CHPUFountainView::OnModel3() 
+{
+	// TODO: Add your command handler code here
+	HuiFu();
+	count=3;
 	Invalidate(FALSE);
 }
 
@@ -2121,6 +2431,13 @@ void CHPUFountainView::OnModel5() //圆台
 	// TODO: Add your command handler code here
 	HuiFu();
 	count=5;
+	Invalidate(FALSE);
+}
+void CHPUFountainView::OnModel6() 
+{
+	// TODO: Add your command handler code here
+	HuiFu();
+	count=6;
 	Invalidate(FALSE);
 }
 
@@ -2219,3 +2536,7 @@ void CHPUFountainView::OnModel43()
 	count=43;
 	Invalidate(FALSE);
 }
+
+
+
+

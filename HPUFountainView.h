@@ -92,7 +92,8 @@ public:
 	int count;//控制模型之间的转换
 	float a;	//旋转增量
 	int i,j,num;	//喷泉数量
-	int gaodu,jiaodu; //喷泉高度、角度
+	float gaodu;
+	int jiaodu; //喷泉高度、角度
 	point table[41],table1[41],table2[41],table3[41],table4[41];//模型五的参数
 	
 	float m_sliderR;//颜色
@@ -152,6 +153,8 @@ protected:
 	afx_msg void OnModel42();
 	afx_msg void OnModel43();
 	afx_msg void OnModel2();
+	afx_msg void OnModel3();
+	afx_msg void OnModel6();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
