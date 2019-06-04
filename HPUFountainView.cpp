@@ -720,7 +720,7 @@ void CHPUFountainView::DrawFountain()
 	}
 	else if(count==6)//¸´ÔÓ2
 	{
-		num=327;
+		//num=327;
 		AddParticles1();
 		MoveParticles1();
 	}
@@ -971,6 +971,7 @@ void CHPUFountainView::DrawFountain()
 			else if(m_yanse==3)//ÑÕÉ«½¥±ä
 			{
 				float color=0.0f;
+				
 				if(count==9)
 				{
 					if(i<36)
@@ -1014,7 +1015,7 @@ void CHPUFountainView::DrawFountain()
 				}
 				else
 				{
-					int k=i/6;
+					int k=i%6;
 					if(k==0)
 						glColor4f(1,0,0,tempp->a);
 					else if(k==1)
@@ -1026,9 +1027,9 @@ void CHPUFountainView::DrawFountain()
 					else if(k==4)
 						glColor4f(0,0,1,tempp->a);
 					else if(k==5)
-						glColor4f(1,0,1,tempp->a);
+						glColor4f(0.8,0.5,0.9,tempp->a);
 					else
-						glColor4f(1,1,1,tempp->a);
+						glColor4f(0.2,0.6,0.5,tempp->a);
 				}
 			}
 

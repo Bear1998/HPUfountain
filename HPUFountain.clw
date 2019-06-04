@@ -16,10 +16,10 @@ Class4=CMainFrame
 
 ResourceCount=4
 Resource1=IDR_MAINFRAME
-Resource2=IDD_Logindlg
+Resource2=IDD_ABOUTBOX
 Class5=CAboutDlg
 Class6=CLoginDlg
-Resource3=IDD_ABOUTBOX
+Resource3=IDD_Logindlg
 Class7=CcontrolView
 Resource4=IDD_DIALOG1
 
