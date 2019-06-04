@@ -165,6 +165,7 @@ BEGIN
         MENUITEM "综合喷泉1",                   IDM_MODEL3
         MENUITEM "综合喷泉2",                   IDM_MODEL6
     END
+    MENUITEM "动态喷泉",                    IDM_MODEL7
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "关于 HPUFountain(&A)...",     ID_APP_ABOUT
@@ -221,7 +222,7 @@ END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 98, 336
 STYLE WS_CHILD
-FONT 10, "System", 0, 0, 0x1
+FONT 10, "System"
 BEGIN
     LTEXT           "数量",IDC_STATIC,17,6,17,8
     LTEXT           "static",IDC_STATICSHULIANG,57,6,17,8
@@ -245,17 +246,17 @@ BEGIN
                     WS_GROUP,13,117,31,10
     CONTROL         "开",IDC_XUANZHUAN,"Button",BS_AUTORADIOBUTTON,52,117,31,
                     10
-    GROUPBOX        "形状",IDC_STATIC,7,131,86,23
-    CONTROL         "默认",IDC_XINGZHUANG,"Button",BS_AUTORADIOBUTTON | 
-                    WS_GROUP,13,143,32,10
-    CONTROL         "形状1",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,52,143,38,
-                    10
+    GROUPBOX        "形状",IDC_STATIC,7,131,86,23,NOT WS_VISIBLE
+    CONTROL         "默认",IDC_XINGZHUANG,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE | WS_GROUP,13,143,32,10
+    CONTROL         "形状1",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON | NOT 
+                    WS_VISIBLE,52,143,38,10
     GROUPBOX        "颜色",IDC_STATIC,7,155,86,38
     CONTROL         "白色",IDC_PENQUANYANSE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP,13,166,30,10
     CONTROL         "彩色",IDC_PENQUANYANSE2,"Button",BS_AUTORADIOBUTTON,52,
                     165,30,10
-    CONTROL         "自选",IDC_PENQUANYANSE3,"Button",BS_AUTORADIOBUTTON,13,
+    CONTROL         "自调",IDC_PENQUANYANSE3,"Button",BS_AUTORADIOBUTTON,13,
                     181,31,10
     CONTROL         "五彩",IDC_PENQUANYANSE4,"Button",BS_AUTORADIOBUTTON,52,
                     181,32,10

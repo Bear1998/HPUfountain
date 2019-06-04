@@ -51,6 +51,7 @@ BEGIN_MESSAGE_MAP(CHPUFountainView,CView)
 	ON_COMMAND(IDM_MODEL2, OnModel2)
 	ON_COMMAND(IDM_MODEL3, OnModel3)
 	ON_COMMAND(IDM_MODEL6, OnModel6)
+	ON_COMMAND(IDM_MODEL7, OnModel7)
 	//}}AFX_MSG_MAP
 	//Standardprintingcommands
 	ON_COMMAND(ID_FILE_PRINT,CView::OnFilePrint)
@@ -700,7 +701,7 @@ void CHPUFountainView::DrawFountain()
 		AddParticles1();
 		MoveParticles();	
 	}
-	else if(count==3)
+	else if(count==3)//复杂
 	{
 		num=245;
 		AddParticles1();
@@ -722,6 +723,15 @@ void CHPUFountainView::DrawFountain()
 		num=327;
 		AddParticles1();
 		MoveParticles1();
+	}
+	else if(count==7)//动态
+	{
+		num=300;
+		AddParticles1();
+		MoveParticles1();
+		m_time += 1;
+		// ToDo: Set time
+		m_time = m_time%99999+1;
 	}
 	else if(count==9)//HPU造型
 	{
@@ -795,7 +805,7 @@ void CHPUFountainView::DrawFountain()
 				else if(i<170)
 					alpha=((i-50)*360/1+a)*PI/180;
 				else if(i>=170 && i<242)
-					alpha=((i-50)*360/1+a)*PI/180;
+					alpha=((i-170)*360/1+a)*PI/180;
 			}
 			else if(count==4)//茶壶
 				alpha=a*PI/180;
@@ -825,7 +835,19 @@ void CHPUFountainView::DrawFountain()
 				else
 					alpha=(i*360/(num-330))*PI/180;
 			}
-			
+			else if(count==7)//动态
+			{
+				if(i<40)
+					alpha=(i*360/40+a)*PI/180;
+				else if(i>=40 && i<70)
+					alpha=(i*360/30+a)*PI/180;
+				else if(i>=70 && i<90)
+					alpha=(i*360/20+a)*PI/180;
+				else if(i>=90 && i<100)
+					alpha=(i*360/10+a)*PI/180;
+				else
+					alpha=(i*360/(num-100))*PI/180;
+			}
 			else if(count==8)//方形
 			{
 				if(i<32)
@@ -1216,7 +1238,7 @@ void CHPUFountainView::AddParticles1()
 					b=a*(cos(30*PI/180)+sin(30*PI/180));
 					c=a*(cos(30*PI/180)-sin(30*PI/180));
 						
-				if(i<60) //外层小喷泉环形阵列
+					if(i<60) //外层小喷泉环形阵列
 					{
 						tempp->x=weiyi[0]+a;
 						tempp->z=weiyi[0]+a;
@@ -1368,6 +1390,27 @@ void CHPUFountainView::AddParticles1()
 				{
 					tempp->x=weiyi[0];
 				}
+			}
+			else if(count==7)
+			{
+				if(i<40)
+				{
+					tempp->x = weiyi[0]+20;
+				}
+				else if(i>=40 && i<70)
+				{
+					tempp->x = weiyi[0]+10;
+				}
+				else if(i>=70 && i<90)
+				{
+					tempp->x = weiyi[0]+5;
+				}
+				else if(i>=90 && i<100)
+				{
+					tempp->x = weiyi[0];
+				}
+				else
+					tempp->x = weiyi[0]+100;
 			}
 			else if(count==9)//复杂造型HPU
 			{
@@ -1712,7 +1755,7 @@ void CHPUFountainView::MoveParticles1()
 					if(tempp->y < 0)
 						tempp->type=1;
 				}
-				else if(count==3)//复杂综合
+				else if(count==3)//复杂综合1
 				{
 					if(i<30)
 					{
@@ -1861,6 +1904,59 @@ void CHPUFountainView::MoveParticles1()
 					else
 					{
 						tempp->y=(10.5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+				}
+				else if(count==7)//动态
+				{
+					float inner_height = m_time%201/200.0;
+					inner_height = -4*inner_height*inner_height+4*inner_height+1;
+					if(i<40)
+					{
+						tempp->x += tempp->xd;
+						tempp->z += tempp->zd;
+						
+						tempp->y = (3.5*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu*inner_height;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else if(i>=40 && i<70)
+					{
+						tempp->x += tempp->xd/2;
+						tempp->z += tempp->zd/2;
+						tempp->y = (5.5*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu*inner_height;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else if(i>=70 && i<90)
+					{
+						tempp->x += tempp->xd/3;
+						tempp->z += tempp->zd/3;
+						tempp->y = (7*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu*inner_height;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else if(i>=90 && i<100)
+					{
+						tempp->x += tempp->xd/5;
+						tempp->z += tempp->xd/5;
+						tempp->y = (8*tempp->t - 0.2*tempp->t*tempp->t/2)/gaodu*inner_height;
+						if(tempp->y<0)
+							tempp->type=1;
+					}
+					else
+					{
+						tempp->x+=tempp->xd/3;
+						tempp->z+=tempp->zd/3;
+						// 波浪
+						// 一系列(20支)随时间改变高度因子，形成一个系列的动态效果
+						float k_height = (i+m_time/10)%20;
+						k_height = -0.01*k_height*k_height+0.2*k_height+1;
+						// 每一支随时间改变高度因子，形成高度的动态效果
+						float k_height2 = m_time%101/200.0;
+						k_height2 = -8.0*k_height2*k_height2+4.0*k_height2+1;
+						tempp->y=(5*tempp->t-0.2*tempp->t*tempp->t/2)/gaodu*k_height*k_height2;
 						if(tempp->y<0)
 							tempp->type=1;
 					}
@@ -2440,7 +2536,14 @@ void CHPUFountainView::OnModel6()
 	count=6;
 	Invalidate(FALSE);
 }
-
+void CHPUFountainView::OnModel7() 
+{
+	// TODO: Add your command handler code here
+	HuiFu();
+	count=7;
+	m_time=1;
+	Invalidate(FALSE);
+}
 void CHPUFountainView::OnModel8()
 {
 	//TODO:Addyourcommandhandlercodehere
@@ -2536,7 +2639,4 @@ void CHPUFountainView::OnModel43()
 	count=43;
 	Invalidate(FALSE);
 }
-
-
-
 

@@ -94,6 +94,7 @@ public:
 	int i,j,num;	//喷泉数量
 	float gaodu;
 	int jiaodu; //喷泉高度、角度
+	int m_time;	//动态喷泉时间变量
 	point table[41],table1[41],table2[41],table3[41],table4[41];//模型五的参数
 	
 	float m_sliderR;//颜色
@@ -155,6 +156,7 @@ protected:
 	afx_msg void OnModel2();
 	afx_msg void OnModel3();
 	afx_msg void OnModel6();
+	afx_msg void OnModel7();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CMainFrame
+LastClass=CHPUFountainView
 LastTemplate=CFormView
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "HPUFountain.h"
@@ -15,11 +15,11 @@ Class3=CHPUFountainView
 Class4=CMainFrame
 
 ResourceCount=4
-Resource1=IDD_Logindlg
-Resource2=IDD_ABOUTBOX
+Resource1=IDR_MAINFRAME
+Resource2=IDD_Logindlg
 Class5=CAboutDlg
 Class6=CLoginDlg
-Resource3=IDR_MAINFRAME
+Resource3=IDD_ABOUTBOX
 Class7=CcontrolView
 Resource4=IDD_DIALOG1
 
@@ -54,7 +54,7 @@ ImplementationFile=MainFrm.cpp
 Filter=T
 BaseClass=CFrameWnd
 VirtualFilter=fWC
-LastObject=IDM_MODEL3
+LastObject=IDM_MODEL7
 
 
 
@@ -108,8 +108,9 @@ Command27=IDM_MODEL33
 Command28=IDM_MODEL2
 Command29=IDM_MODEL3
 Command30=IDM_MODEL6
-Command31=ID_APP_ABOUT
-CommandCount=31
+Command31=IDM_MODEL7
+Command32=ID_APP_ABOUT
+CommandCount=32
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -172,9 +173,9 @@ Control12=IDC_RADIO2,button,1342177289
 Control13=IDC_STATIC,button,1342177287
 Control14=IDC_XUANZHUAN1,button,1342308361
 Control15=IDC_XUANZHUAN,button,1342177289
-Control16=IDC_STATIC,button,1342177287
-Control17=IDC_XINGZHUANG,button,1342308361
-Control18=IDC_RADIO5,button,1342177289
+Control16=IDC_STATIC,button,1073741831
+Control17=IDC_XINGZHUANG,button,1073872905
+Control18=IDC_RADIO5,button,1073741833
 Control19=IDC_STATIC,button,1342177287
 Control20=IDC_PENQUANYANSE,button,1342308361
 Control21=IDC_PENQUANYANSE2,button,1342177289
