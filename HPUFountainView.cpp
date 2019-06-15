@@ -720,7 +720,7 @@ void CHPUFountainView::DrawFountain()
 	}
 	else if(count==6)//复杂2
 	{
-		//num=327;
+		num=327;
 		AddParticles1();
 		MoveParticles1();
 	}
@@ -959,9 +959,9 @@ void CHPUFountainView::DrawFountain()
 			vectl.z*=cuxi[2];
 
 			//设置颜色的变化值
-			tempp->r=(float)(rand()%256)/255;
-			tempp->g=(float)(rand()%256)/255;
-			tempp->b=(float)(rand()%256)/255;
+			tempp->r=(float)(rand()%256)/255.0;
+			tempp->g=(float)(rand()%256)/255.0;
+			tempp->b=(float)(rand()%256)/255.0;
 			if(m_yanse==0)//白色
 				glColor4f(0.8,0.8,0.8,tempp->a);
 			else if(m_yanse==1)//彩色
@@ -1028,8 +1028,8 @@ void CHPUFountainView::DrawFountain()
 						glColor4f(0,0,1,tempp->a);
 					else if(k==5)
 						glColor4f(0.8,0.5,0.9,tempp->a);
-					else
-						glColor4f(0.2,0.6,0.5,tempp->a);
+					//else
+					//	glColor4f(0.2,0.6,0.5,tempp->a);
 				}
 			}
 

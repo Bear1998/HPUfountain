@@ -33,7 +33,7 @@ struct point
 	float x,y,z;
 };
 
-class CHPUFountainView : public CView
+class CHPUFountainView : public CView		//负责数据显示和修改
 {
 protected: // create from serialization only
 	CHPUFountainView();

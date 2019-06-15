@@ -99,7 +99,7 @@ BOOL CHPUFountainApp::InitInstance()
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
 
-class CAboutDlg : public CDialog
+class CAboutDlg : public CDialog  //为用户提供程序相关的帮助信息
 {
 public:
 	CAboutDlg();
